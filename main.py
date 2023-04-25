@@ -4,11 +4,32 @@ import winsound
 wn=turtle.Screen()
 wn.title("Pong By Shivangini")
 wn.bgcolor("black")
-wn.setup(width=800, height=600)
+wn.setup(width=1000, height=800)
+wn.tracer(0)
 
-#Score
+#Border
+border = turtle.Turtle()
+border.color('white')
+border.penup()
+border.goto(400,0)
+border.pensize(2)
+border.hideturtle()
+border.pendown()
+border.left(90)
+border.forward(300)
+border.left(90)
+border.forward(800)
+border.left(90)
+border.forward(600)
+border.left(90)
+border.forward(800)
+border.left(90)
+border.forward(300)
+
+#Score - Keep track of the score
 score_a=0
 score_b=0
+
 
 #Paddle A
 paddle_a=turtle.Turtle()
@@ -18,6 +39,7 @@ paddle_a.color("white")
 paddle_a.penup()
 paddle_a.goto(-350,0)
 paddle_a.shapesize(stretch_wid=5,stretch_len=1)
+
 
 #Paddle B
 paddle_b=turtle.Turtle()
@@ -31,12 +53,12 @@ paddle_b.shapesize(stretch_wid=5,stretch_len=1)
 #Ball
 ball=turtle.Turtle()
 ball.speed(0) 
-ball.shape("square")
+ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx=10
-ball.dy=-10
+ball.dx=0.30
+ball.dy=-0.30
 
 #Pen - used for scoring
 pen=turtle.Turtle()
@@ -44,8 +66,9 @@ pen.speed(0)
 pen.color("white")
 pen.penup()
 pen.hideturtle()
-pen.goto(0,260)
+pen.goto(0,305)
 pen.write("Player A: 0  Player B: 0", align="center", font=("Courier", 24, "normal"))
+
 
 #Function 
 def  paddle_a_up():
@@ -87,7 +110,7 @@ while True:
     if ball.ycor()>290:
         ball.sety(290)
         ball.dy*=-1
-        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)#yeh sound dega
     
     if ball.ycor()<-290:
         ball.sety(-290)
@@ -101,7 +124,7 @@ while True:
         winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
         pen.clear()
         pen.write("Player A: {}  Player B: {}".format(score_a,score_b), align="center", font=("Courier", 24, "normal"))
-        
+
     if ball.xcor()<-390:
         ball.goto(0,0)
         ball.dx*=-1
@@ -115,7 +138,6 @@ while True:
         ball.setx(340)
         ball.dx*=-1
         winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
-   
 
     if (ball.xcor()<-340 and ball.xcor()>-350) and (ball.ycor()<paddle_a.ycor()+40 and ball.ycor()>paddle_a.ycor()-40):
         ball.setx(-340)
