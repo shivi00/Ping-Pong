@@ -6,7 +6,7 @@ Ping Pong game is made with python using turtle module It is a two-player game t
 
 
 
-## Demo
+## Preview of game
 
 ![](https://github.com/shivi00/Pong-game/blob/main/giphy%20(1).gif)
 
